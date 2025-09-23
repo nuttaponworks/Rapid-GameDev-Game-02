@@ -1,0 +1,30 @@
+﻿using UnityEngine;
+
+public class BossBullet : MonoBehaviour
+{
+    public float speed = 5f;   
+    public float damage = 10f; 
+    private Vector2 direction;
+    public void SetTarget(Vector3 targetPos)
+    {
+        direction = (targetPos - transform.position).normalized;
+    }
+
+    void Update()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
+
+        if (Vector3.Distance(Vector3.zero, transform.position) > 50f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
+}
