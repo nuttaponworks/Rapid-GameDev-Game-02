@@ -2,12 +2,13 @@
 
 public class Projectile : MonoBehaviour
 {
+
     public float speed = 10f;
     public float baseDamage = 10f;
     private Vector2 direction;
     private ElementType element;
     public void SetDirection(Vector2 dir) => direction = dir.normalized;
-
+    [SerializeField] Vector2 bossPo;
     public void SetElement(ElementType e)
     {
         element = e;
@@ -27,10 +28,11 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(bossPo * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Boss"))
         {
@@ -39,7 +41,7 @@ public class Projectile : MonoBehaviour
             {
                 boss.TakeDamage(baseDamage);
             }
-
+            
             Destroy(gameObject);
         }
     }

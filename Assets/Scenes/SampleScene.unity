@@ -796,7 +796,7 @@ Transform:
   m_GameObject: {fileID: 619394800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.36, y: 3.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2059,6 +2059,7 @@ GameObject:
   - component: {fileID: 1523417738}
   - component: {fileID: 1523417737}
   - component: {fileID: 1523417739}
+  - component: {fileID: 1523417740}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -2157,6 +2158,43 @@ MonoBehaviour:
   phase2Threshold: 0.6
   phase3Threshold: 0.3
   stats: {fileID: 1212970370}
+--- !u!70 &1523417740
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523417736}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.47999996, y: 0.47999996}
+  m_Direction: 0
 --- !u!1 &1624572904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,8 +2270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbPrefab: {fileID: 4323705543061167121, guid: 4d52fa8220043e4478c633aadb0f1609, type: 3}
   spawnInterval: 3
-  spawnAreaMin: {x: -5, y: -3}
-  spawnAreaMax: {x: 5, y: 3}
+  spawnAreaMin: {x: -6, y: -5}
+  spawnAreaMax: {x: 6, y: 8}
 --- !u!4 &1663961601
 Transform:
   m_ObjectHideFlags: 0
@@ -2243,7 +2281,7 @@ Transform:
   m_GameObject: {fileID: 1663961599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6627, y: -0.19867, z: 0}
+  m_LocalPosition: {x: -0.07, y: -0.19867, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
