@@ -13,11 +13,11 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - PlayerProjectile
+  - BossProjectile
+  - Boss
   - 
   - 
   - 
@@ -41,6 +41,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1484685309
+    locked: 0
+  - name: Ground
+    uniqueID: 3947825907
+    locked: 0
+  - name: Player
+    uniqueID: 1491922607
+    locked: 0
+  - name: Particles
+    uniqueID: 1547923779
+    locked: 0
+  - name: UI
+    uniqueID: 3287636453
     locked: 0
   m_RenderingLayers:
   - Default

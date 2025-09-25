@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6541700691652465987}
   - component: {fileID: 1442438652887796209}
   - component: {fileID: 9154363248241404487}
+  - component: {fileID: -6793701175843684532}
   m_Layer: 0
   m_Name: BossBullet
   m_TagString: Untagged
@@ -140,3 +141,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &-6793701175843684532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8910400563575947757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4b6260cc79b8c44b8a05c35ca0e989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  _hitPoints: 1
+  _useTrigger: 1
+  _bounceMultiplier: 1
+  _hitParticlePrefab: {fileID: 1004038278230665889, guid: 4a3f5dad39cb5084e982602bb505a400, type: 3}
+  _particleZRotationOffset: 0
+  _particleAutoDestroyAfter: 2
+  OnDestroyed:
+    m_PersistentCalls:
+      m_Calls: []

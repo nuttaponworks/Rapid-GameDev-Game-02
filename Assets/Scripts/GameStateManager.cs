@@ -13,6 +13,7 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager Instance;
     public GameState currentState { get; private set; }
 
+    public GameObject currentBossPrefab;
     public event Action<GameState> OnStateChanged;
 
     void Awake()

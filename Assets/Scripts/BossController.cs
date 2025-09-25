@@ -19,6 +19,9 @@ public class BossController : MonoBehaviour
 
     public StatsManager1 stats;
     private Coroutine attackRoutine;
+// [เพิ่มฟิลด์ไว้บนสุดของคลาส]
+    [Header("Hit FX")]
+    [SerializeField] private GameObject homingHitParticlePrefab;
 
     void Start()
     {
@@ -121,6 +124,19 @@ public class BossController : MonoBehaviour
 
         Destroy(gameObject);
     }
+    
+    // [เพิ่มเมธอดใหม่ในคลาส]
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<HomingProjectile>(out var _))
+        {
+            if (homingHitParticlePrefab != null)
+                Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
+
+            Destroy(other.gameObject);
+        }
+    }
+
 
 }
 
