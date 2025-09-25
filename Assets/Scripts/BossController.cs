@@ -73,7 +73,7 @@ public class BossController : MonoBehaviour
 
     IEnumerator AttackRoutine()
     {
-        Debug.Log("Boss is attacking...");
+        
         while (true)
         {
             yield return new WaitForSeconds(attackInterval);
@@ -92,7 +92,6 @@ public class BossController : MonoBehaviour
         {
             GameObject bullet = Instantiate(bossBulletPrefab, fp.position, Quaternion.identity);
             BossBullet bp = bullet.GetComponent<BossBullet>();
-            Debug.Log("Bullet spawned at ");
             if (bp != null)
                 bp.SetTarget(player.transform.position);
         }
