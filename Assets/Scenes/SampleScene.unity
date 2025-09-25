@@ -1740,8 +1740,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1212970371}
   - component: {fileID: 1212970372}
+  - component: {fileID: 1212970374}
+  - component: {fileID: 1212970373}
   m_Layer: 0
-  m_Name: 'GameStatsManager '
+  m_Name: 'GameManager '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1773,6 +1775,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9b74b1f5da1dd846ab0657673acecca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1212970373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212970369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ffba3c76856924ea06de8b5a95f46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1212970374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212970369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44cb7a3a7e5b534a9f9112af059e42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1389419266
@@ -2016,6 +2042,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1478011020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478011021}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1478011021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478011020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.6627, y: -0.19867, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523417736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,7 +2182,7 @@ MonoBehaviour:
   attackInterval: 2
   phase2Threshold: 0.6
   phase3Threshold: 0.3
-  stats: {fileID: 1212970372}
+  stats: {fileID: 1212970373}
 --- !u!70 &1523417740
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3008,3 +3065,4 @@ SceneRoots:
   - {fileID: 1624572905}
   - {fileID: 1212970371}
   - {fileID: 1663961601}
+  - {fileID: 1478011021}
