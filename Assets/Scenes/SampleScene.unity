@@ -357,38 +357,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Controller
       objectReference: {fileID: 0}
-    - target: {fileID: 1544650614272011804, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969068311962969431, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969068313154050965, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.711
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969068313154050967, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 38f0b4811be7cda469d8899b3f951697, type: 3}
-    - target: {fileID: 2969068313154050967, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969068313154050967, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: m_Color.r
-      value: 0.119199276
-      objectReference: {fileID: 0}
-    - target: {fileID: 3792082991635992293, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: currentElement
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7226334868464473029, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 6865290794357049980, guid: 195835d64b4aa8c409d1d3f5c2b1b5ed, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1771,26 +1739,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212970371}
-  - component: {fileID: 1212970370}
+  - component: {fileID: 1212970372}
   m_Layer: 0
-  m_Name: 'StatsManager '
+  m_Name: 'GameStatsManager '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1212970370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212970369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9b74b1f5da1dd846ab0657673acecca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1212970371
 Transform:
   m_ObjectHideFlags: 0
@@ -1807,6 +1763,18 @@ Transform:
   - {fileID: 766112296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1212970372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212970369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b74b1f5da1dd846ab0657673acecca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1389419266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2125,7 @@ MonoBehaviour:
   attackInterval: 2
   phase2Threshold: 0.6
   phase3Threshold: 0.3
-  stats: {fileID: 1212970370}
+  stats: {fileID: 1212970372}
 --- !u!70 &1523417740
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

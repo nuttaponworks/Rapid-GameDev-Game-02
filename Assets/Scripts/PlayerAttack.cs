@@ -7,14 +7,16 @@ public class PlayerAttack : MonoBehaviour
 
     public void ShootImmediate(ElementType element)
     {
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+        if (boss == null) return;
+
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Projectile p = proj.GetComponent<Projectile>();
 
         if (p != null)
         {
-            Vector2 dir = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            Vector2 dir = (boss.transform.position - firePoint.position).normalized;
             p.SetDirection(dir);
-
             p.SetElement(element);
         }
     }

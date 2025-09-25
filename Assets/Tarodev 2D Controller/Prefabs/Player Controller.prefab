@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentElement: 0
-  elementCharges: 0
 --- !u!114 &7226334868464473029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1155954595447617899}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 6865290794357049980, guid: 195835d64b4aa8c409d1d3f5c2b1b5ed, type: 3}
 --- !u!1 &1961012292332383087
 GameObject:
   m_ObjectHideFlags: 0
