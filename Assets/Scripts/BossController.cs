@@ -150,14 +150,14 @@ public class BossController : MonoBehaviour
     {
         HandleCanNormalAttack();
         //
-        // if(Input.GetKeyDown(KeyCode.Alpha6)) 
-        //     SetElement(BossElementType.None);
-        // else if(Input.GetKeyDown(KeyCode.Alpha7)) 
-        //     SetElement(BossElementType.Fire);
-        // else if(Input.GetKeyDown(KeyCode.Alpha8)) 
-        //     SetElement(BossElementType.Water);
-        // else if(Input.GetKeyDown(KeyCode.Alpha9)) 
-        //     SetElement(BossElementType.Grass);
+        if(Input.GetKeyDown(KeyCode.Alpha6)) 
+            SetElement(BossElementType.None);
+        else if(Input.GetKeyDown(KeyCode.Alpha7)) 
+            SetElement(BossElementType.Fire);
+        else if(Input.GetKeyDown(KeyCode.Alpha8)) 
+            SetElement(BossElementType.Water);
+        else if(Input.GetKeyDown(KeyCode.Alpha9)) 
+            SetElement(BossElementType.Grass);
     }
 
     void OnDestroy()

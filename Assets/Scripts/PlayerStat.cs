@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
     public event System.Action<int> HpChanged;
-    private int _playerHP = 5;
+    [SerializeField] private int _playerHP = 5;
     public int playerHP
     {
         get => _playerHP;

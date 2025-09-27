@@ -74,8 +74,11 @@ MonoBehaviour:
   anim: {fileID: 9067875830624237561}
   attackParticle: {fileID: 8378648546881499446, guid: 867c572a5be680d42a042d2349f10143, type: 3}
   particleDamageDelay: 1
-  damage: 10
-  speedMultiplier: 0.5
+  speedMultiplier: 1
+  damageHit: 1
+  isRepeatingDamage: 0
+  repeatingDamageInterval: 0.5
+  repeatingDamageDuration: 2
 --- !u!58 &529068200248431957
 CircleCollider2D:
   m_ObjectHideFlags: 0

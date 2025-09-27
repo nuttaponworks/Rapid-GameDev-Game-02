@@ -9,12 +9,6 @@ public class UI_BossNotify : MonoBehaviour
     [SerializeField] private TMP_Text textElementName;
     [SerializeField] private Image iconColor;
 
-    [Header("Behavior")]
-    [SerializeField] private bool showPanelOnChange = true;
-    [SerializeField] private float autoHideSeconds = 2.0f; // 0 = ไม่ซ่อนอัตโนมัติ
-
-    private Coroutine _hideCo;
-
     private void OnEnable()
     {
         BossController.OnElementChanged += HandleElementChanged;
@@ -27,7 +21,6 @@ public class UI_BossNotify : MonoBehaviour
 
     private void HandleElementChanged(BossElementType elem)
     {
-        // ชื่อ + สีตามสเปก
         string displayName;
         Color color;
 
@@ -39,11 +32,11 @@ public class UI_BossNotify : MonoBehaviour
                 break;
             case BossElementType.Water:
                 displayName = "Cobalt";
-                color = new Color(0.20f, 0.65f, 1.00f); // ฟ้าโคบอลต์
+                color = new Color(0.20f, 0.65f, 1.00f);
                 break;
             case BossElementType.Grass:
                 displayName = "Viridian";
-                color = new Color(0.15f, 0.75f, 0.30f); // เขียวอมฟ้า
+                color = new Color(0.15f, 0.75f, 0.30f);
                 break;
             case BossElementType.None:
             default:
@@ -55,22 +48,8 @@ public class UI_BossNotify : MonoBehaviour
         if (textElementName) textElementName.text = displayName;
         if (iconColor) iconColor.color = color;
 
-        if (panelNotify && showPanelOnChange)
-        {
-            panelNotify.SetActive(true);
-            if (autoHideSeconds > 0f)
-            {
-                if (_hideCo != null) StopCoroutine(_hideCo);
-                _hideCo = StartCoroutine(HideLater(autoHideSeconds));
-            }
-        }
-    }
-
-    private System.Collections.IEnumerator HideLater(float t)
-    {
-        yield return new WaitForSeconds(t);
-        if (panelNotify) panelNotify.SetActive(false);
-        _hideCo = null;
+        // แสดงทันที ไม่ต้องรอ และไม่มี auto-hide
+        if (panelNotify) panelNotify.SetActive(true);
     }
 
     // เผื่อทดสอบจาก Inspector
