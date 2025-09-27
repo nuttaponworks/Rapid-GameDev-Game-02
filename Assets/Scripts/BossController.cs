@@ -6,6 +6,7 @@ public class BossController : MonoBehaviour
     [Header("HP")]
     public float maxHP = 300f;
     private float currentHP;
+    public bool bossIsDead = false;
 
     [Header("Attack")]
     public GameObject bossBulletPrefab;
@@ -111,8 +112,14 @@ public class BossController : MonoBehaviour
         if (pct <= phase3Threshold) currentPhase = 3;
         else if (pct <= phase2Threshold) currentPhase = 2;
 
-         if (currentHP <= 0)
-             Die();
+        if (currentHP <= 0)
+        {
+            Debug.Log("You Win!");
+            Time.timeScale = 0;
+            bossIsDead = true;
+            GameStateManager.Instance.ChangeState(GameState.End);
+            Die();
+        }
     }
 
     void Die()
@@ -122,7 +129,6 @@ public class BossController : MonoBehaviour
 
         GameStateManager.Instance.ChangeState(GameState.End);
 
-        Destroy(gameObject);
     }
     
     // [เพิ่มเมธอดใหม่ในคลาส]
