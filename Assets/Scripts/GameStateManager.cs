@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+
 public enum GameState
 {
     Warmup,
@@ -11,18 +14,22 @@ public enum GameState
 }
 public class GameStateManager : MonoBehaviour
 {
-    public  GameObject gameWinPanel;
-    public  GameObject gameOverPanel;
-    public  GameObject WarmUpPanel;
-    public static GameStateManager Instance;
+    [Header("UI")]
+    [SerializeField] GameObject gameWinPanel;
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject warmUpPanel;
+    [SerializeField] GameObject hurtPanel;
+    private Coroutine hurtCoroutine;
+    [Space]
     public PlayerStat playerStat;
-    public BossController BossController;
+    public BossController bossController;
     public GameState currentState { get; private set; }
 
     public GameObject currentBossPrefab;
     public event Action<GameState> OnStateChanged;
     public GameObject bossPrefab;
     
+    public static GameStateManager Instance;
 
     void Awake()
     {
@@ -34,7 +41,7 @@ public class GameStateManager : MonoBehaviour
     {
         ChangeState(GameState.Warmup);
         
-        WarmUpPanel.SetActive(true);
+        warmUpPanel.SetActive(true);
         gameOverPanel.SetActive(false);
         gameWinPanel.SetActive(false);
         Time.timeScale = 1;
@@ -51,7 +58,7 @@ public class GameStateManager : MonoBehaviour
             if (bossPrefab != null && currentBossPrefab == null)
                 currentBossPrefab = Instantiate(bossPrefab, Vector3.zero, Quaternion.identity);
             gameOverPanel.SetActive(false);
-            WarmUpPanel.SetActive(false);
+            warmUpPanel.SetActive(false);
         }
         
         if (newState == GameState.End)
@@ -60,7 +67,7 @@ public class GameStateManager : MonoBehaviour
             {
                 gameOverPanel.SetActive(true);
             }
-            else if (BossController.bossIsDead)
+            else if (bossController.bossIsDead)
             {
                 gameWinPanel.SetActive(true);
             }
@@ -80,5 +87,18 @@ public class GameStateManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void TriggerHurt()
+    {
+        if(hurtCoroutine!=null) StopCoroutine(hurtCoroutine);
+        hurtCoroutine= StartCoroutine(HurtCoroutine());
+    }
+
+    IEnumerator HurtCoroutine()
+    {
+        hurtPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        hurtPanel.SetActive(false);
     }
 }

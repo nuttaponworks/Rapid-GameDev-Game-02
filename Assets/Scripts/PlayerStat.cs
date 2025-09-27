@@ -8,11 +8,14 @@ public class PlayerStat : MonoBehaviour
     public bool PlayerIsDead = false;
     
     
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         playerHP -= damage;
         Debug.Log(playerHP);
 
+        CameraShake.instance.TriggerShake();
+        GameStateManager.Instance.TriggerHurt();
+        
         if (playerHP <= 0)
         {
             Debug.Log("You Lose!");
@@ -20,7 +23,7 @@ public class PlayerStat : MonoBehaviour
             PlayerIsDead = true;
             GameStateManager.Instance.ChangeState(GameState.End);
             
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
