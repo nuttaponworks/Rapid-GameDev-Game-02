@@ -24,6 +24,11 @@ public class BossBullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerStat player = other.GetComponent<PlayerStat>();
+            if (player != null)
+            {
+                player.takeDamage(damage);
+            }
             Destroy(gameObject);
         }
     }

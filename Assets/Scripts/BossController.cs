@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject homingHitParticlePrefab;
 
    
-    void OnEnable()
+    void Start()
     {
         if (GameStateManager.Instance != null)
             GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
@@ -56,6 +56,8 @@ public class BossController : MonoBehaviour
 
     private void StartProcess()
     {
+        currentHP = maxHP;
+        Debug.Log($"[Boss] HP: {currentHP}");
         if (stats != null) stats.StartTimer();
         if (attackRoutine == null)
             attackRoutine = StartCoroutine(AttackRoutine());
@@ -101,7 +103,7 @@ public class BossController : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         if (GameStateManager.Instance.currentState != GameState.Process) return;
-
+        
         currentHP -= dmg;
         Debug.Log("Boss HP: " + currentHP + "/" + maxHP);
 
@@ -109,8 +111,8 @@ public class BossController : MonoBehaviour
         if (pct <= phase3Threshold) currentPhase = 3;
         else if (pct <= phase2Threshold) currentPhase = 2;
 
-        if (currentHP <= 0)
-            Die();
+         if (currentHP <= 0)
+             Die();
     }
 
     void Die()
