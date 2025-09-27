@@ -15,6 +15,8 @@ public class GameStateManager : MonoBehaviour
 
     public GameObject currentBossPrefab;
     public event Action<GameState> OnStateChanged;
+    public GameObject bossPrefab;
+    
 
     void Awake()
     {
@@ -32,6 +34,12 @@ public class GameStateManager : MonoBehaviour
         currentState = newState;
         Debug.Log("Game State: " + currentState);
         OnStateChanged?.Invoke(newState);
+
+        if (newState == GameState.Process)
+        {
+            if (bossPrefab != null && currentBossPrefab == null)
+                currentBossPrefab = Instantiate(bossPrefab, Vector3.zero, Quaternion.identity);
+        }
 
         if (newState == GameState.Summary)
         {

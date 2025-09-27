@@ -23,18 +23,29 @@ public class BossController : MonoBehaviour
     [Header("Hit FX")]
     [SerializeField] private GameObject homingHitParticlePrefab;
 
-    void Start()
+    //void Start()
+    //{
+    //    currentHP = maxHP;
+
+
+    //    if (GameStateManager.Instance != null)
+    //        GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
+    //    if (GameStateManager.Instance.currentState == GameState.Process)
+    //        StartProcess();
+    //}
+
+    //void OnDestroy()
+    //{
+    //    if (GameStateManager.Instance != null)
+    //        GameStateManager.Instance.OnStateChanged -= HandleGameStateChanged;
+    //}
+    void OnEnable()
     {
-        currentHP = maxHP;
-
-
         if (GameStateManager.Instance != null)
             GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
-        if (GameStateManager.Instance.currentState == GameState.Process)
-            StartProcess();
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         if (GameStateManager.Instance != null)
             GameStateManager.Instance.OnStateChanged -= HandleGameStateChanged;
@@ -42,6 +53,7 @@ public class BossController : MonoBehaviour
 
     private void HandleGameStateChanged(GameState state)
     {
+        Debug.Log($"[BossController] State Changed to: {state}");
         switch (state)
         {
             case GameState.Process:
@@ -79,6 +91,7 @@ public class BossController : MonoBehaviour
         
         while (true)
         {
+            Debug.Log("Boss Attack");
             yield return new WaitForSeconds(attackInterval);
             Attack();
         }
@@ -133,6 +146,7 @@ public class BossController : MonoBehaviour
             if (homingHitParticlePrefab != null)
                 Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
 
+            
             Destroy(other.gameObject);
         }
     }

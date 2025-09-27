@@ -168,7 +168,7 @@ namespace TarodevController
                 {
                     // fallback: ถ้าไม่มีสคริปต์ ให้พุ่งทิศเริ่มด้วย Rigidbody2D (ถ้ามี)
                     var rb = go.GetComponent<Rigidbody2D>();
-                    if (rb != null) rb.velocity = initialDir * _projInitialSpeed;
+                    if (rb != null) rb.linearVelocity = initialDir * _projInitialSpeed;
                 }
             }
         }

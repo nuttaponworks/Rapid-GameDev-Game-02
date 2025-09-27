@@ -25,7 +25,7 @@ public class HomingProjectile : MonoBehaviour
 
         if (_rb == null) _rb = GetComponent<Rigidbody2D>();
         Vector2 v0 = initialDir.normalized * initialSpeed;
-        if (_rb != null) _rb.velocity = v0;
+        if (_rb != null) _rb.linearVelocity = v0;
 
         StartCoroutine(HomingRoutine());
     }
@@ -45,7 +45,7 @@ public class HomingProjectile : MonoBehaviour
     {
         if (_rb == null) return;
 
-        Vector2 vel = _rb.velocity;
+        Vector2 vel = _rb.linearVelocity;
         float speed = vel.magnitude;
         Vector2 curDir = speed > 0.0001f ? vel / Mathf.Max(speed, 0.0001f) : (Vector2)transform.right;
 
@@ -62,7 +62,7 @@ public class HomingProjectile : MonoBehaviour
             speed = Mathf.Min(_maxSpeed, speed + _accel * Time.fixedDeltaTime);
             vel = newDir * speed;
 
-            _rb.velocity = vel;
+            _rb.linearVelocity = vel;
             transform.right = newDir; // หันหน้าไปตามทิศ
         }
         else
