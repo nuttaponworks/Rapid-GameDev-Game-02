@@ -16,13 +16,15 @@ public enum BossElementType
 [Serializable]
 public struct ElementAttackPattern
 {
-    public GameObject prefab;                   // พรีแฟบที่จะ spawn (มี Animator + AOE อยู่ข้างใน)
-    public float attackInterval;                // คาบการโจมตีแต่ละครั้ง (ทำซ้ำ)
+    public GameObject prefab;
+    public float attackInterval;
     public float minAttackDuration, maxAttackDuration;
     public float minAttackPauseDuration, maxAttackPauseDuration;
-    public float initialDelay;                  // หน่วงก่อนเริ่มทำงานครั้งแรก
-    public bool defaultRotateToBoss;            // ถ้าเป็น beam ให้ติ๊กไว้
+    public float initialDelay;
+    public bool defaultRotateToBoss;
+    public bool spawnAtBoss; // 👈 NEW: false (default) = spawn ที่ player, true = spawn ที่ boss
 }
+
 
 class ElementAttackState
 {
@@ -142,6 +144,15 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         HandleCanNormalAttack();
+        
+        if(Input.GetKeyDown(KeyCode.Alpha6)) 
+            SetElement(BossElementType.None);
+        else if(Input.GetKeyDown(KeyCode.Alpha7)) 
+            SetElement(BossElementType.Fire);
+        else if(Input.GetKeyDown(KeyCode.Alpha8)) 
+            SetElement(BossElementType.Water);
+        else if(Input.GetKeyDown(KeyCode.Alpha9)) 
+            SetElement(BossElementType.Grass);
     }
 
     void OnDestroy()
@@ -180,6 +191,7 @@ public class BossController : MonoBehaviour
         if (_elementLoop == null)
             _elementLoop = StartCoroutine(ElementalAttackLoop());
 
+        
         Debug.Log("Boss StartProcess called");
     }
 
@@ -294,6 +306,8 @@ public class BossController : MonoBehaviour
             foreach (var pat in src)
                 _activeElementStates.Add(new ElementAttackState(pat));
         }
+        
+        Debug.Log($"Switched element to: {currentElement}");
     }
 
     IEnumerator ElementalAttackLoop()
@@ -312,7 +326,10 @@ public class BossController : MonoBehaviour
                     _activeElementStates[i].Tick(Time.deltaTime, out bool fireNow);
                     if (fireNow)
                     {
-                        Attack(_activeElementStates[i].data, playerPos, _activeElementStates[i].data.defaultRotateToBoss);
+                        Debug.Log("Element Attack!");
+                        var pat = _activeElementStates[i].data;
+                        Vector3 spawnPos = pat.spawnAtBoss ? transform.position : playerPos; // 👈 เลือกตำแหน่งตาม flag
+                        Attack(pat, spawnPos, pat.defaultRotateToBoss);
                     }
                 }
             }
