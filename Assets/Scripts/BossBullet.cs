@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BossBullet : MonoBehaviour
 {
     public float speed = 5f;   
-    public float damage = 10f; 
+    public int damageHit = 1; 
     private Vector2 direction;
 
     [SerializeField] private GameObject hitParticle;
@@ -29,7 +30,7 @@ public class BossBullet : MonoBehaviour
             PlayerStat player = other.GetComponent<PlayerStat>();
             if (player != null)
             {
-                player.TakeDamage(damage);
+                player.TakeDamage(damageHit);
                 Instantiate(hitParticle, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }

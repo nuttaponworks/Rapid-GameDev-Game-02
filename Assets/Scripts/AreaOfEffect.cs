@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AreaOfEffect : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class AreaOfEffect : MonoBehaviour
 
     [SerializeField] private float particleDamageDelay = 0.1f;
 
-    [SerializeField] private float damage, speedMultiplier = 1f;
+    [SerializeField] private float speedMultiplier = 1f;
+    [SerializeField] private int damageHit = 1;
 
     private PlayerStat currentPlayer;
 
@@ -56,7 +58,7 @@ public class AreaOfEffect : MonoBehaviour
             
             if (particleDamageDelay > 0)
                 StartCoroutine(AttackDelay());
-            else currentPlayer.TakeDamage(damage);
+            else currentPlayer.TakeDamage(damageHit);
         }
     }
 
@@ -64,8 +66,8 @@ public class AreaOfEffect : MonoBehaviour
     {
         Debug.Log($"Attack delayed by {particleDamageDelay} sec");
         yield return new WaitForSeconds(particleDamageDelay);
-        Debug.Log($"Deal {damage} to the player delayed");
-        if (currentPlayer != null) currentPlayer.TakeDamage(damage);
+        Debug.Log($"Deal {damageHit} to the player delayed");
+        if (currentPlayer != null) currentPlayer.TakeDamage(damageHit);
     }
 
     public void TriggerDestroy()

@@ -105,6 +105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 8455276481383529724}
+  _separationRadius: 1.25
+  _separationWeight: 1
+  _separationMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _maxNeighbors: 12
 --- !u!114 &4401595106784863756
 MonoBehaviour:
   m_ObjectHideFlags: 0

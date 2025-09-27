@@ -42,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870013061268423863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f68f7cd3a91a1da498a7618b150689eb, type: 3}
   m_Name: 
@@ -66,10 +66,10 @@ MonoBehaviour:
   useRigidbody2D: 1
   lagSeconds: 0.25
   sampleRate: 30
-  lifeTime: 8
+  lifeTime: 10
   hitMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   hitVfxPrefab: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6, type: 3}
 --- !u!58 &4167845889320103411
 CircleCollider2D:
@@ -363,3 +363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
+  _separationRadius: 1.25
+  _separationWeight: 1
+  _separationMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _maxNeighbors: 12

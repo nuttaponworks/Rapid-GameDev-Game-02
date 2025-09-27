@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace TarodevController
@@ -46,7 +47,8 @@ namespace TarodevController
         
 // Dash: คง _dashSpeed, _dashDuration ไว้ได้
         [Header("Stamina")]
-        [SerializeField] private float _maxStamina = 100f;
+        public float stamina;
+        public float maxStamina = 100f;
         [SerializeField] private float _dashStaminaCost = 30f;
         [SerializeField] private float _staminaRegenTime = 3f;
         [SerializeField] private float _staminaOnResetDash = 25f;
@@ -59,15 +61,11 @@ namespace TarodevController
         [SerializeField] private float _glideMaxFallSpeedMultiplier = 0.4f;
 
 // runtime
-        private float _stamina;
         private bool _isGliding;
-        private float StaminaRegenPerSec => _maxStamina / Mathf.Max(0.01f, _staminaRegenTime);
-        private bool HasMinStamina => _stamina >= _minStaminaToAct; // 👈 helper
+        private float StaminaRegenPerSec => maxStamina / Mathf.Max(0.01f, _staminaRegenTime);
+        private bool HasMinStamina => stamina >= _minStaminaToAct; // 👈 helper
 
         [Header("UI")]
-        [Tooltip("ใส่ Slider ที่อยู่บนหัวผู้เล่น")]
-        [SerializeField] private Slider _dashCooldownSlider;
-
         [Header("Direction Indicator")]
         [Tooltip("ใส่ LineRenderer ที่เป็นเส้นชี้ทิศ")]
         [SerializeField] private LineRenderer _directionLine;
@@ -88,17 +86,11 @@ namespace TarodevController
             if (_directionLine != null) _directionLine.useWorldSpace = true;
 
             // ซ่อนหลอดตอนเริ่ม
-            if (_dashCooldownSlider != null) _dashCooldownSlider.gameObject.SetActive(false);
-            
+           
             if (_trail == null) _trail = GetComponent<TrailRenderer>() ?? GetComponentInChildren<TrailRenderer>();
             if (_trail != null) SetTrailStartWidth(_idleStartWidth); // เริ่มต้นปิดเส้น
 
-            if (_dashCooldownSlider != null) {
-                _dashCooldownSlider.maxValue = _maxStamina;
-                _dashCooldownSlider.value = _maxStamina;
-                _dashCooldownSlider.gameObject.SetActive(true);
-            }
-            _stamina = _maxStamina;
+            stamina = maxStamina;
         }
 
         private void Update()
@@ -109,8 +101,6 @@ namespace TarodevController
             HandleDashInput();   // ใช้สแตมินาแทนคูลดาวน์
             HandleGlideInput();  // คลิกขวาค้าง
             TickStamina();       // ฟื้น/ดูด
-            UpdateStaminaUI();   // อัปเดตสไลเดอร์
-            
             UpdateDirectionLine();
             
             UpdateTrailByDashState();
@@ -177,7 +167,7 @@ namespace TarodevController
         private void HandleDashInput()
         {
             // คลิกซ้ายเพื่อ Dash ถ้าพร้อม (คูลดาวน์หมด)
-            if (Input.GetMouseButtonDown(0) && HasMinStamina && _stamina >= _dashStaminaCost)
+            if (Input.GetMouseButtonDown(0) && HasMinStamina && stamina >= _dashStaminaCost)
             {
                 Vector3 mouseWorld = Camera.main != null
                     ? Camera.main.ScreenToWorldPoint(Input.mousePosition)
@@ -203,7 +193,7 @@ namespace TarodevController
 
         private void HandleGlideInput() {
             _isGliding = Input.GetMouseButton(1) && HasMinStamina && !_grounded && !_isDashing;
-            if (_isGliding && _stamina < _minStaminaToAct) _isGliding = false; // 👈 ดับเมื่อหล่นต่ำกว่า min
+            if (_isGliding && stamina < _minStaminaToAct) _isGliding = false; // 👈 ดับเมื่อหล่นต่ำกว่า min
         }
 
         private void TickStamina()
@@ -211,7 +201,7 @@ namespace TarodevController
             if (_isGliding)
             {
                 SpendStamina(_glideDrainPerSec * Time.deltaTime);
-                if (_stamina < _minStaminaToAct) _isGliding = false; // 👈 ดับเมื่อหล่นต่ำกว่า min
+                if (stamina < _minStaminaToAct) _isGliding = false; // 👈 ดับเมื่อหล่นต่ำกว่า min
             }
             else
             {
@@ -220,14 +210,10 @@ namespace TarodevController
         }
 
 
-        private void SpendStamina(float amt) => _stamina = Mathf.Max(0f, _stamina - amt);
-        private void GainStamina(float amt)  => _stamina = Mathf.Min(_maxStamina, _stamina + amt);
+        private void SpendStamina(float amt) => stamina = Mathf.Max(0f, stamina - amt);
+        private void GainStamina(float amt)  => stamina = Mathf.Min(maxStamina, stamina + amt);
 
-        private void UpdateStaminaUI() {
-            if (_dashCooldownSlider == null) return;
-            _dashCooldownSlider.maxValue = _maxStamina;
-            _dashCooldownSlider.value = _stamina;
-        }
+
 
         /// <summary>ยกเลิกดาชทันที แล้วเด้งด้วยความเร็วตามที่ส่งเข้าไป</summary>
         public void CancelDashAndBounce(Vector2 bounceVelocity)

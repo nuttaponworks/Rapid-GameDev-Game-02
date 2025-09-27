@@ -51,7 +51,11 @@ public class BossHomingProjectile : MonoBehaviour
     private void OnEnable()
     {
         // ป้องกันลืมทำลาย
-        if (lifeTime > 0) Destroy(gameObject, lifeTime);
+        if (lifeTime > 0)
+        {
+            Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject, lifeTime);
+        }
     }
 
     private void Update()
@@ -135,8 +139,14 @@ public class BossHomingProjectile : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & hitMask) == 0) return;
 
-        if (hitVfxPrefab) Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+        if (other.gameObject.TryGetComponent<PlayerStat>(out var p))
+        {
+            if (hitVfxPrefab) Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+            p.TakeDamage(1);
+        }
+        
         Destroy(gameObject);
+        
     }
 
 #if UNITY_EDITOR

@@ -23,6 +23,7 @@ public class GameStateManager : MonoBehaviour
     [Space]
     public PlayerStat playerStat;
     public BossController bossController;
+    public int playerDamage = 5;
     public GameState currentState { get; private set; }
 
     public GameObject currentBossPrefab;
@@ -47,6 +48,11 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void StartGameProcess()
+    {
+        ChangeState(GameState.Process);
+    }
+
     public void ChangeState(GameState newState)
     {
         currentState = newState;
@@ -63,7 +69,7 @@ public class GameStateManager : MonoBehaviour
         
         if (newState == GameState.End)
         {
-            if (playerStat.PlayerIsDead)
+            if (playerStat.playerIsDead)
             {
                 gameOverPanel.SetActive(true);
             }

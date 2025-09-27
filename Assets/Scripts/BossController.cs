@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -92,9 +93,11 @@ class ElementAttackState
 
 public class BossController : MonoBehaviour
 {
+    public static System.Action<BossElementType> OnElementChanged;
+    
     [Header("HP")]
     public float maxHP = 300f;
-    private float currentHP;
+    public float currentHP;
     public bool bossIsDead = false;
 
     [Header("Attack Settings")]
@@ -121,6 +124,8 @@ public class BossController : MonoBehaviour
 
     [Header("Element State")]
     public BossElementType currentElement = BossElementType.None;
+// ===== Element cycle =====
+    private readonly List<BossElementType> _remainingElements = new(); // เก็บ 2 ธาตุที่เหลือ
 
     [Header("Phase")]
     public float phase2Threshold = 0.6f;
@@ -144,15 +149,15 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         HandleCanNormalAttack();
-        
-        if(Input.GetKeyDown(KeyCode.Alpha6)) 
-            SetElement(BossElementType.None);
-        else if(Input.GetKeyDown(KeyCode.Alpha7)) 
-            SetElement(BossElementType.Fire);
-        else if(Input.GetKeyDown(KeyCode.Alpha8)) 
-            SetElement(BossElementType.Water);
-        else if(Input.GetKeyDown(KeyCode.Alpha9)) 
-            SetElement(BossElementType.Grass);
+        //
+        // if(Input.GetKeyDown(KeyCode.Alpha6)) 
+        //     SetElement(BossElementType.None);
+        // else if(Input.GetKeyDown(KeyCode.Alpha7)) 
+        //     SetElement(BossElementType.Fire);
+        // else if(Input.GetKeyDown(KeyCode.Alpha8)) 
+        //     SetElement(BossElementType.Water);
+        // else if(Input.GetKeyDown(KeyCode.Alpha9)) 
+        //     SetElement(BossElementType.Grass);
     }
 
     void OnDestroy()
@@ -191,7 +196,7 @@ public class BossController : MonoBehaviour
         if (_elementLoop == null)
             _elementLoop = StartCoroutine(ElementalAttackLoop());
 
-        
+        InitElementCycleAtStart();
         Debug.Log("Boss StartProcess called");
     }
 
@@ -208,6 +213,23 @@ public class BossController : MonoBehaviour
             _elementLoop = null;
         }
         _activeElementStates.Clear();
+    }
+    private void InitElementCycleAtStart()
+    {
+        // reset pool
+        _remainingElements.Clear();
+        var pool = new List<BossElementType> { BossElementType.Fire, BossElementType.Water, BossElementType.Grass };
+
+        // สุ่มตัวเริ่ม
+        int startIdx = Random.Range(0, pool.Count);
+        var startElem = pool[startIdx];
+
+        // ตั้งธาตุเริ่ม
+        SetElement(startElem);
+
+        // เก็บสองตัวที่เหลือ
+        for (int i = 0; i < pool.Count; i++)
+            if (i != startIdx) _remainingElements.Add(pool[i]);
     }
 
     void HandleCanNormalAttack()
@@ -291,6 +313,8 @@ public class BossController : MonoBehaviour
         if (currentElement == newElement) return;
         currentElement = newElement;
 
+        OnElementChanged?.Invoke(currentElement);
+        
         _activeElementStates.Clear();
 
         List<ElementAttackPattern> src = null;
@@ -345,13 +369,32 @@ public class BossController : MonoBehaviour
         currentHP -= dmg;
         Debug.Log("Boss HP: " + currentHP + "/" + maxHP);
 
+        // (phase logic เดิมคงไว้ได้)
         float pct = currentHP / maxHP;
         if (pct <= phase3Threshold) currentPhase = 3;
         else if (pct <= phase2Threshold) currentPhase = 2;
 
-        if (currentHP <= 0)
-            Die();
+        if (currentHP > 0) return;
+
+        // HP หมด
+        if (_remainingElements.Count > 0)
+        {
+            // ฟื้นเต็มและเปลี่ยนเป็น 1 ใน 2 ที่เหลือ
+            int idx = Random.Range(0, _remainingElements.Count);
+            var next = _remainingElements[idx];
+            _remainingElements.RemoveAt(idx);
+
+            currentHP = maxHP;
+            SetElement(next);
+
+            Debug.Log($"Boss revived with new element: {next}. Remaining: {_remainingElements.Count}");
+            return;
+        }
+
+        // ไม่มีธาตุเหลือแล้ว → ชนะ
+        Die();
     }
+
 
     void Die()
     {
@@ -367,11 +410,12 @@ public class BossController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<HomingProjectile>(out var _))
+        if (other.TryGetComponent<HomingProjectile>(out var proj))
         {
             if (homingHitParticlePrefab != null)
                 Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
 
+            TakeDamage(GameStateManager.Instance.playerDamage);
             Destroy(other.gameObject);
         }
     }
