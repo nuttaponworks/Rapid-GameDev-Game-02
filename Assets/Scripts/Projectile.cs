@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     public float baseDamage = 10f;
     private Vector2 direction;
     private ElementType element;
-
+    
     public void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
@@ -25,7 +25,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+       
+
         if (other.CompareTag("Boss"))
         {
             BossController boss = other.GetComponent<BossController>();

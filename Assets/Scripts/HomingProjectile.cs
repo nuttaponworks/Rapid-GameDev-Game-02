@@ -13,7 +13,7 @@ public class HomingProjectile : MonoBehaviour
     private float _homingDelay;
 
     private bool _homing;
-
+    
     public void Init(Transform target, Vector2 initialDir, float initialSpeed,
                      float turnRateDeg, float acceleration, float maxSpeed, float homingDelay)
     {

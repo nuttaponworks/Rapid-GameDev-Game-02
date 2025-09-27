@@ -23,22 +23,7 @@ public class BossController : MonoBehaviour
     [Header("Hit FX")]
     [SerializeField] private GameObject homingHitParticlePrefab;
 
-    //void Start()
-    //{
-    //    currentHP = maxHP;
-
-
-    //    if (GameStateManager.Instance != null)
-    //        GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
-    //    if (GameStateManager.Instance.currentState == GameState.Process)
-    //        StartProcess();
-    //}
-
-    //void OnDestroy()
-    //{
-    //    if (GameStateManager.Instance != null)
-    //        GameStateManager.Instance.OnStateChanged -= HandleGameStateChanged;
-    //}
+   
     void OnEnable()
     {
         if (GameStateManager.Instance != null)
@@ -145,13 +130,11 @@ public class BossController : MonoBehaviour
         {
             if (homingHitParticlePrefab != null)
                 Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
+            TakeDamage(10f);
 
-            
             Destroy(other.gameObject);
         }
     }
-
-
 }
 
 

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  baseDamage: 10
+  baseDamage: 5
 --- !u!70 &-5210492181049676745
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

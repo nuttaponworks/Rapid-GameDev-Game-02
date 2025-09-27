@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 8455276481383529724}
+  damage: 1
 --- !u!114 &4401595106784863756
 MonoBehaviour:
   m_ObjectHideFlags: 0
