@@ -19,6 +19,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject warmUpPanel;
     [SerializeField] GameObject hurtPanel;
+    [SerializeField] GameObject bossNotiPanel;
+    [SerializeField] GameObject bossStatPanel;
+    [SerializeField] GameObject playerStatPanel;
     private Coroutine hurtCoroutine;
     [Space]
     public PlayerStat playerStat;
@@ -77,6 +80,10 @@ public class GameStateManager : MonoBehaviour
             {
                 gameWinPanel.SetActive(true);
             }
+            bossNotiPanel.SetActive(false);
+            bossStatPanel.SetActive(false);
+            playerStatPanel.SetActive(false);
+            Time.timeScale = 0f;
         }
 
         if (newState == GameState.Summary)
@@ -91,6 +98,11 @@ public class GameStateManager : MonoBehaviour
     }
 
     public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReturnToMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
