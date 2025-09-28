@@ -97,7 +97,7 @@ public class BossHomingProjectile : MonoBehaviour
         Vector2 vel = forward * speed;
 
         if (useRigidbody2D && _rb != null)
-            _rb.velocity = vel;
+            _rb.linearVelocity = vel;
         else
             transform.position += (Vector3)(vel * Time.fixedDeltaTime);
     }
