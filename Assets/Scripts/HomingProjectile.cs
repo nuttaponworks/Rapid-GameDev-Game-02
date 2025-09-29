@@ -6,6 +6,8 @@ public class HomingProjectile : MonoBehaviour
     [Header("Refs (optional)")]
     [SerializeField] private Rigidbody2D _rb;
 
+    public BossElementType elements;
+
     // -------- Homing core --------
     private Transform _target;
     private float _turnRateDeg;

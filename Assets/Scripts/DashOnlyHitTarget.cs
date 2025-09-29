@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace TarodevController
 {
@@ -17,8 +20,16 @@ namespace TarodevController
     [RequireComponent(typeof(Collider2D))]
     public class DashOnlyHitTarget : MonoBehaviour
     {
+        [SerializeField] private BossElementType myElement;
+        [SerializeField] private SpriteRenderer mySprite;
+        [SerializeField] private Light2D light2D;
+        [Space]
+        [SerializeField] private Sprite[] stageSprite;
+        [SerializeField] int[] hitPerSprite;
+        
+        [Space]
         [Header("On Destroy -> Shoot Projectiles")]
-        [SerializeField] private GameObject _projectilePrefab;
+        [SerializeField] private GameObject _projectilePrefabNone,_projectilePrefabFire,_projectilePrefabWater,_projectilePrefabGrass;
         [SerializeField] private int   _projectileCount    = 3;
         [SerializeField] private float _projectileSpreadDeg = 10f;   // กระจายซ้าย/ขวา (องศา)
         [SerializeField] private float _projInitialSpeed    = 10f;   // ความเร็วเริ่ม (หนีออกจากบอส)
@@ -68,11 +79,21 @@ namespace TarodevController
 
         private void Start()
         {
+            int randomStage = Random.Range(0, stageSprite.Length);
+            mySprite.sprite = stageSprite[randomStage];
+            _hitPoints = hitPerSprite[randomStage];
+            
             if (healthSlider != null)
             {
                 healthSlider.maxValue = _hitPoints;
                 healthSlider.value = _hitPoints;
             }
+
+        }
+
+        private void Update()
+        {
+            light2D.enabled = (myElement == GameStateManager.Instance.bossController.currentElement);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -131,7 +152,14 @@ namespace TarodevController
 
         private void SpawnDeathProjectiles()
         {
-            if (_projectilePrefab == null) return;
+            GameObject projectileToSpawn = _projectilePrefabNone;
+            switch (myElement)
+            {
+                case BossElementType.Fire: projectileToSpawn = _projectilePrefabFire; break;
+                case BossElementType.Grass: projectileToSpawn = _projectilePrefabGrass; break;
+                case BossElementType.Water: projectileToSpawn = _projectilePrefabWater; break;
+            }
+
             var gsm = GameStateManager.Instance;
             if (gsm == null || gsm.currentBossPrefab == null) return;
 
@@ -148,7 +176,7 @@ namespace TarodevController
                 Vector2 initialDir = Rotate2D(baseAwayDir, offset);
 
                 Quaternion rot = Quaternion.Euler(0, 0, Mathf.Atan2(initialDir.y, initialDir.x) * Mathf.Rad2Deg);
-                var go = Instantiate(_projectilePrefab, transform.position, rot);
+                var go = Instantiate(projectileToSpawn, transform.position, rot);
 
                 // ส่งพารามิเตอร์ให้กระสุน
                 var proj = go.GetComponent<HomingProjectile>();

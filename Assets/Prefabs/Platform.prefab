@@ -256,10 +256,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObject:
-  - {fileID: 8853415039053154249, guid: b91ee284eaf188343b2585ba2e2edab8, type: 3}
+  - {fileID: 5027707320803457331, guid: cb282269df102ce44848bf342b410402, type: 3}
+  - {fileID: 5144962950177086076, guid: 542061051e75dcf4c9605ebe8b9e8e93, type: 3}
+  - {fileID: 2557131242345892908, guid: 978c02c36702d14479194a8a27438a0d, type: 3}
   currentHitObject: {fileID: 0}
   spawnParticle: {fileID: 607914935907159708, guid: 22b9fc8929c1f1e43b844b37ab4cb21b, type: 3}
-  yOffset: 1.5
+  yOffset: 1.2
   minSpawnTime: 5
   maxSpawnTime: 20
   currentSpawnTime: 0

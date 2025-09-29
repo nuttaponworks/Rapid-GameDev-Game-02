@@ -64,7 +64,7 @@ MonoBehaviour:
   speed: 14
   maxTurnRateDegPerSec: 360
   useRigidbody2D: 1
-  lagSeconds: 0.25
+  lagSeconds: 0.5
   sampleRate: 30
   lifeTime: 10
   hitMask:
@@ -117,7 +117,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2142111604951657192, guid: f8dc879bd6649cb4782409815764d676, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2142111604951657192, guid: f8dc879bd6649cb4782409815764d676, type: 3}
       propertyPath: m_SortingOrder
@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593274378043938503, guid: f8dc879bd6649cb4782409815764d676, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3593274378043938503, guid: f8dc879bd6649cb4782409815764d676, type: 3}
       propertyPath: m_SortingOrder
@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103363450278006073, guid: f8dc879bd6649cb4782409815764d676, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8103363450278006073, guid: f8dc879bd6649cb4782409815764d676, type: 3}
       propertyPath: m_SortingOrder
@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930510193063315078, guid: ac1eb58333177014ca6f8c95cc1a7273, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6930510193063315078, guid: ac1eb58333177014ca6f8c95cc1a7273, type: 3}
       propertyPath: m_SortingLayerID
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
+  elements: 0
   _separationRadius: 1.25
   _separationWeight: 1
   _separationMask:

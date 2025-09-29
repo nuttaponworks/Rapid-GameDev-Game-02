@@ -26,10 +26,14 @@ public class HitObjectSpawner : MonoBehaviour
 
         if (currentHitObject == null && currentSpawnTime <= 0)
         {
-            currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+            float nextSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+            currentSpawnTime = nextSpawnTime;
 
             currentHitObject = Instantiate(hitObject[Random.Range(0,hitObject.Length)], new Vector2(transform.position.x, transform.position.y + yOffset),
                 quaternion.identity);
+
+            Destroy(currentHitObject.gameObject, nextSpawnTime);
+            
             Instantiate(spawnParticle, new Vector2(transform.position.x, transform.position.y + yOffset), Quaternion.identity);
 
         }

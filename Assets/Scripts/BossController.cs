@@ -93,6 +93,7 @@ class ElementAttackState
 
 public class BossController : MonoBehaviour
 {
+    [SerializeField] private Animator anim;
     public static System.Action<BossElementType> OnElementChanged;
     
     [Header("HP")]
@@ -294,6 +295,10 @@ public class BossController : MonoBehaviour
         if (GameStateManager.Instance.currentState != GameState.Process) return;
         if (pattern.prefab == null) return;
 
+        // 🔔 ยิงทริกเกอร์อนิเมชันทุกครั้งที่บอสโจมตีผ่าน Elemental
+        if (anim == null) anim = GetComponent<Animator>();
+        if (anim != null) anim.SetTrigger("Attack"); // หรือ anim.SetTrigger("Attack");
+
         GameObject obj = Instantiate(pattern.prefab, spawnPos, Quaternion.identity);
 
         bool doRotate = rotateToBoss || pattern.defaultRotateToBoss;
@@ -306,6 +311,7 @@ public class BossController : MonoBehaviour
 
         // ไม่ต้องเรียกอะไรบน AreaOfEffect: Animator ในพรีแฟบจะ trigger เอง
     }
+
 
     // ===== Elemental control =====
     public void SetElement(BossElementType newElement)
@@ -412,11 +418,22 @@ public class BossController : MonoBehaviour
     {
         if (other.TryGetComponent<HomingProjectile>(out var proj))
         {
+            TakeElementalDamage(other,proj.elements);
+            Destroy(other.gameObject);
+        }
+    }
+
+    void TakeElementalDamage(Collider2D other, BossElementType targetElement)
+    {
+        if (currentElement == targetElement)
+        {
+            TakeDamage(GameStateManager.Instance.playerDamage);
             if (homingHitParticlePrefab != null)
                 Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
-
-            TakeDamage(GameStateManager.Instance.playerDamage);
-            Destroy(other.gameObject);
+        }
+        else
+        {
+            TakeDamage((float)GameStateManager.Instance.playerDamage/2);
         }
     }
 }
