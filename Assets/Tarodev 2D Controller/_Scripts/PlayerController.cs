@@ -8,6 +8,16 @@ namespace TarodevController
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
+        [SerializeField] private Animator _anim;
+
+        private bool _facingRight = true;
+// แปลงชื่อพารามิเตอร์ใน Animator เป็น hash เพื่อประสิทธิภาพ
+        private static readonly int HashIsRunning = Animator.StringToHash("isRunning");
+        private static readonly int HashIsFalling = Animator.StringToHash("isFalling");
+        private static readonly int HashJump      = Animator.StringToHash("Jump");
+        private static readonly int HashIsDashing  = Animator.StringToHash("isDashing");
+        private static readonly int HashDash       = Animator.StringToHash("Dash");   
+        
         [Header("Dash Trail")]
         [SerializeField] private TrailRenderer _trail;
         [SerializeField] private float _dashingStartWidth = 0.65f;
@@ -159,8 +169,53 @@ namespace TarodevController
                 HandleGravity();
             }
 
+            UpdateFacing();
+            UpdateAnimator();
             ApplyMovement();
         }
+
+        private void UpdateFacing()
+        {
+            float lookX = 0f;
+
+            if (_isDashing) lookX = _dashDir.x;
+            else if (Mathf.Abs(_frameVelocity.x) > 0.01f) lookX = _frameVelocity.x;
+            else if (Mathf.Abs(_frameInput.Move.x) > 0.01f) lookX = _frameInput.Move.x;
+
+            if (Mathf.Abs(lookX) <= 0.0001f) return; // ไม่เปลี่ยนถ้าไม่มีทิศที่ชัด
+
+            bool faceRight = lookX > 0f;
+            if (faceRight == _facingRight) return;
+
+            _facingRight = faceRight;
+
+            if (_anim != null)
+            {
+                _anim.GetComponent<SpriteRenderer>().flipX = !_facingRight; // ขวา = ไม่ flip
+            }
+            else
+            {
+                // fallback ถ้าไม่มี SpriteRenderer
+                var s = transform.localScale;
+                s.x = Mathf.Abs(s.x) * (_facingRight ? 1f : -1f);
+                transform.localScale = s;
+            }
+
+        }
+
+        private void UpdateAnimator()
+        {
+            if (_anim == null) return;
+
+            bool running = Mathf.Abs(_frameVelocity.x) > 0.01f;
+            _anim.SetBool(HashIsRunning, running);
+
+            _anim.SetBool(HashIsFalling, !_grounded);
+
+            // ใหม่: isDashing
+            _anim.SetBool(HashIsDashing, _isDashing);
+        }
+
 
         #region Dash Impl
 
@@ -184,6 +239,8 @@ namespace TarodevController
                 SpendStamina(_dashStaminaCost);
                 SetTrailStartWidth(_dashingStartWidth);
                 _lastDashingState = true;
+                
+                if (_anim != null) _anim.SetTrigger(HashDash);
             }
         }
         /// <summary>รีเซ็ตคูลดาวน์ดาชทันที</summary>
@@ -319,7 +376,11 @@ namespace TarodevController
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
             _frameVelocity.y = _stats.JumpPower;
-            Jumped?.Invoke();
+
+            // Trigger jump animation
+            if (_anim != null) _anim.SetTrigger(HashJump);
+
+            Jumped?.Invoke(); // ✅ เรียกครั้งเดียว
         }
 
         #endregion

@@ -9,7 +9,7 @@ public class UI_BossNotify : MonoBehaviour
     [SerializeField] private TMP_Text textElementName;
     [SerializeField] private Image iconColor;
 
-    private void OnEnable()
+    private void Start()
     {
         BossController.OnElementChanged += HandleElementChanged;
     }
@@ -21,6 +21,7 @@ public class UI_BossNotify : MonoBehaviour
 
     private void HandleElementChanged(BossElementType elem)
     {
+        Debug.Log($"Boss Element's changed on UIBOSSNOTIFY");
         string displayName;
         Color color;
 
