@@ -132,7 +132,9 @@ namespace TarodevController
             SpawnHitParticleTowardsPlayer(player.transform.position);
 
             // หัก HP
-            _hitPoints = Mathf.Max(0, _hitPoints - 1);
+            int dmg = _hitPoints;
+            if (GameStateManager.Instance.bossController.currentElement == myElement) dmg+=1;
+            _hitPoints = Mathf.Max(0, _hitPoints - dmg);
             
             if (healthSlider != null) healthSlider.value = _hitPoints;
 

@@ -105,6 +105,8 @@ namespace TarodevController
 
         private void Update()
         {
+            if (GameStateManager.Instance.currentState != GameState.Process) return;
+            
             _time += Time.deltaTime;
             GatherInput();
             
@@ -152,6 +154,7 @@ namespace TarodevController
 
         private void FixedUpdate()
         {
+            if (GameStateManager.Instance.currentState != GameState.Process) return;
             UpdateTrailByDashState();
             CheckCollisions();
 
