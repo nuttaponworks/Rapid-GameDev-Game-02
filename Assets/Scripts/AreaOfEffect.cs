@@ -14,6 +14,7 @@ public class AreaOfEffect : MonoBehaviour
     [SerializeField] private float speedMultiplier = 1f;
     [SerializeField] private int damageHit = 1;
 
+    public int attackFx=28;
     [Header("Repeating Damage")]
     [Tooltip("ถ้าเปิด จะทำดาเมจซ้ำทุก interval จนหมด duration")]
     [SerializeField] private bool isRepeatingDamage = false;
@@ -25,6 +26,7 @@ public class AreaOfEffect : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.PlaySFX(22);
         anim.speed *= speedMultiplier;
     }
 
@@ -44,6 +46,7 @@ public class AreaOfEffect : MonoBehaviour
 
     public void TriggerAttack()
     {
+        StartCoroutine(PlaySFXDelay());
         // VFX
         if (attackParticle != null)
             Instantiate(attackParticle, transform.position, parentObject != null ? parentObject.transform.rotation : Quaternion.identity);
@@ -58,12 +61,22 @@ public class AreaOfEffect : MonoBehaviour
             if (currentPlayer == null) return;
 
             if (particleDamageDelay > 0f)
+            {
                 StartCoroutine(SingleHitDelay());
+            }
             else
+            {
                 currentPlayer.TakeDamage(damageHit);
+            }
         }
+
     }
 
+    IEnumerator PlaySFXDelay()
+    {
+        yield return new WaitForSeconds(particleDamageDelay);
+        AudioManager.instance.PlaySFX(attackFx);
+    }
     private IEnumerator SingleHitDelay()
     {
         yield return new WaitForSeconds(particleDamageDelay);

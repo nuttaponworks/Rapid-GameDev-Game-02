@@ -1,0 +1,9 @@
+how to use
+
+1. ลาก UI_TextIndicator ใน folder ExcA-TextIndicator/Prefab ใส่ใน scene
+2. ใน Inspector ของ UI_TextIndicator ตั้ง Canvas Scaler/Resolution ให้ match กับ project2. ใน
+3. สามารถแก้ไข font ของ text ได้ที่ ExcA-TextIndicator/Prefab/Slot_Text
+4. ใช้งานได้เลย
+
+วิธีเรียกใช้ (สามารถเรียกได้เลยจากทุก class)
+- TextIndicator.Display("ข้อความที่จะแสดง");

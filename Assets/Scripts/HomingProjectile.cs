@@ -44,6 +44,9 @@ public class HomingProjectile : MonoBehaviour
         if (_rb != null) _rb.linearVelocity = v0;
 
         StartCoroutine(HomingRoutine());
+        
+        
+        AudioManager.instance.PlaySFX(14);
     }
 
     private void Awake()

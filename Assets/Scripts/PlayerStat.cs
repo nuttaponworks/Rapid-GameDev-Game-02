@@ -52,6 +52,9 @@ public class PlayerStat : MonoBehaviour
             playerIsDead = true;
             GameStateManager.Instance?.ChangeState(GameState.End);
         }
+        
+        AudioManager.instance.PlaySFX(20);
+        
     }
 
     private System.Collections.IEnumerator IFrameBlink(float duration)

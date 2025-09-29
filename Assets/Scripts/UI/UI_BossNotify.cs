@@ -21,7 +21,7 @@ public class UI_BossNotify : MonoBehaviour
 
     private void HandleElementChanged(BossElementType elem)
     {
-        Debug.Log($"Boss Element's changed on UIBOSSNOTIFY");
+        Debug.Log("Boss Element's changed on UIBOSSNOTIFY");
         string displayName;
         Color color;
 
@@ -51,7 +51,18 @@ public class UI_BossNotify : MonoBehaviour
 
         // แสดงทันที ไม่ต้องรอ และไม่มี auto-hide
         if (panelNotify) panelNotify.SetActive(true);
+        AudioManager.instance.PlaySFX(6);
+
+        // ทำให้ {display} มีสีตามธาตุ
+        string hex = ColorUtility.ToHtmlStringRGB(color);               // e.g. FF0000
+        string displayColored = $"<color=#{hex}>{displayName}</color>"; // {display}
+
+        // ข้อความภาษาอังกฤษที่ต้องการ
+        string message = $"Break the {displayColored} prism—boss takes 2× damage!";
+
+        TextIndicator.Display(message);
     }
+
 
     // เผื่อทดสอบจาก Inspector
     [ContextMenu("Test: Fire")]

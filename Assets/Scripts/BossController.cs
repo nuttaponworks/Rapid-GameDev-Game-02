@@ -380,6 +380,7 @@ public class BossController : MonoBehaviour
         if (pct <= phase3Threshold) currentPhase = 3;
         else if (pct <= phase2Threshold) currentPhase = 2;
 
+        AudioManager.instance.PlaySFX(17);
         if (currentHP > 0) return;
 
         // HP หมด

@@ -45,9 +45,13 @@ public class GameStateManager : MonoBehaviour
     {
         ChangeState(GameState.Warmup);
         
+        
         warmUpPanel.SetActive(true);
+        bossNotiPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         gameWinPanel.SetActive(false);
+        bossStatPanel.SetActive(false);
+        playerStatPanel.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -68,6 +72,10 @@ public class GameStateManager : MonoBehaviour
                 currentBossPrefab = Instantiate(bossPrefab, Vector3.zero, Quaternion.identity);
             gameOverPanel.SetActive(false);
             warmUpPanel.SetActive(false);
+            
+            bossStatPanel.SetActive(true);
+            playerStatPanel.SetActive(true);
+            bossNotiPanel.SetActive(true);
         }
         
         if (newState == GameState.End)

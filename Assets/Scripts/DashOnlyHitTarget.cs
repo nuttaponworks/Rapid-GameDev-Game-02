@@ -136,12 +136,14 @@ namespace TarodevController
             
             if (healthSlider != null) healthSlider.value = _hitPoints;
 
+            AudioManager.instance.PlaySFX(24);
             if (_hitPoints <= 0)
             {
                 if (_hitPoints <= 0)
                 {
                     Instantiate(_destroyParticlePrefab, this.transform.position, quaternion.identity);
                     SpawnDeathProjectiles();   // <-- เพิ่มบรรทัดนี้
+                    AudioManager.instance.PlaySFX(26);
                     Destroy(gameObject);
                 }
                 

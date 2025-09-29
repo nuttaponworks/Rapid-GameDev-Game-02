@@ -240,6 +240,7 @@ namespace TarodevController
                 SetTrailStartWidth(_dashingStartWidth);
                 _lastDashingState = true;
                 
+                AudioManager.instance.PlaySFX(32);
                 if (_anim != null) _anim.SetTrigger(HashDash);
             }
         }
