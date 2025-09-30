@@ -167,7 +167,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &94250390958861417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &7654360234849626343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &8341921609763265806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &6641995293532442763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1535,7 +1535,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &8665067991233269601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &8654904702071552887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2060,7 +2060,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &5770179018753729537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2687,7 +2687,7 @@ MonoBehaviour:
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 8
+  repeatingDamageDuration: 6
 --- !u!61 &300478618524168723
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -3019,6 +3019,10 @@ PrefabInstance:
       propertyPath: parryParticle
       value: 
       objectReference: {fileID: 1004038278230665889, guid: 4a3f5dad39cb5084e982602bb505a400, type: 3}
+    - target: {fileID: 1544650614272011792, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
+      propertyPath: _oneWayPlatformMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 1544650614272011795, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.7
@@ -12956,7 +12960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credit
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4de5d4199829fc14f93d0fd6c998a7c8, type: 2}
   m_sharedMaterial: {fileID: -8249204872161180400, guid: 4de5d4199829fc14f93d0fd6c998a7c8, type: 2}
@@ -13117,7 +13121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1886463666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1212970372}
+        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1886463666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15835,7 +15851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 111178166515367853, guid: e51180cc7ba982b4ba383af8ddaef7cc, type: 3}
       propertyPath: currentElement
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 111178166515367853, guid: e51180cc7ba982b4ba383af8ddaef7cc, type: 3}
       propertyPath: normalAttackDuration
@@ -15954,8 +15970,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 111178166515367853, guid: e51180cc7ba982b4ba383af8ddaef7cc, type: 3}
+      propertyPath: fireTypeAttackPattern.Array.data[0].minAttackDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 111178166515367853, guid: e51180cc7ba982b4ba383af8ddaef7cc, type: 3}
       propertyPath: fireTypeAttackPattern.Array.data[1].maxAttackDuration
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 111178166515367853, guid: e51180cc7ba982b4ba383af8ddaef7cc, type: 3}
+      propertyPath: fireTypeAttackPattern.Array.data[1].minAttackDuration
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 111178166515367853, guid: e51180cc7ba982b4ba383af8ddaef7cc, type: 3}
       propertyPath: grassTypeAttackPattern.Array.data[0].maxAttackDuration

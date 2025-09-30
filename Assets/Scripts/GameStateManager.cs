@@ -130,4 +130,9 @@ public class GameStateManager : MonoBehaviour
     {
         AudioManager.instance.OpenVolumeUI();
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

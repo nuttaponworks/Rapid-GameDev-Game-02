@@ -143,8 +143,7 @@ public class BossController : MonoBehaviour
     {
         if (GameStateManager.Instance != null)
             GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
-        if (GameStateManager.Instance.currentState == GameState.Process)
-            StartProcess();
+
     }
 
     private void Update()
@@ -197,10 +196,18 @@ public class BossController : MonoBehaviour
         if (_elementLoop == null)
             _elementLoop = StartCoroutine(ElementalAttackLoop());
 
-        InitElementCycleAtStart();
         Debug.Log("Boss StartProcess called");
+
+        InitElementCycleAtStart();
     }
 
+    // IEnumerator DelayStartElemental()
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     //if (GameStateManager.Instance.currentState == GameState.Process) 
+    //     InitElementCycleAtStart();
+    //
+    // }
     private void StopProcess()
     {
         if (attackRoutine != null)

@@ -108,10 +108,9 @@ namespace TarodevController
             TryHandleHit(collision.rigidbody ? collision.rigidbody.gameObject : collision.gameObject);
         }
 
-        private void OnCollisionStay2D(Collision2D collision)
-        {
-            if (_useTrigger) return;
-            TryHandleHit(collision.rigidbody ? collision.rigidbody.gameObject : collision.gameObject);
+        private void OnTriggerStay2D(Collider2D other) {
+            if (!_useTrigger) return;
+            TryHandleHit(other.attachedRigidbody ? other.attachedRigidbody.gameObject : other.gameObject);
         }
 
         private void TryHandleHit(GameObject otherGO)
