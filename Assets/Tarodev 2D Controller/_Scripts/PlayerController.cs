@@ -8,6 +8,7 @@ namespace TarodevController
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
+        [SerializeField] private GameObject parryParticle;
         [SerializeField] private Animator _anim;
 
         private bool _facingRight = true;
@@ -253,8 +254,15 @@ namespace TarodevController
         }
 
         private void HandleGlideInput() {
-            _isGliding = Input.GetMouseButton(1) && HasMinStamina && !_grounded && !_isDashing;
-            if (_isGliding && stamina < _minStaminaToAct) _isGliding = false; // 👈 ดับเมื่อหล่นต่ำกว่า min
+            _isGliding = Input.GetMouseButtonDown(1) && HasMinStamina;
+            if (_isGliding)
+            {
+                Instantiate(parryParticle, this.transform.position, Quaternion.identity);
+            }
+            if (_isGliding && stamina < _minStaminaToAct)
+            {
+                _isGliding = false; // 👈 ดับเมื่อหล่นต่ำกว่า min
+            }
         }
 
         private void TickStamina()

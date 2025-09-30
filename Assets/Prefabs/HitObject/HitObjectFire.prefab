@@ -240,7 +240,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e246d0fe9a8ea004b981ea953a47c200, type: 3}
   - {fileID: 21300000, guid: 61a679849021dc24984d93bdcdd05572, type: 3}
   - {fileID: 21300000, guid: e2dbc42b6de76ca42af8153e8a25a03d, type: 3}
-  hitPerSprite: 01000000020000000300000005000000
+  hitPerSprite: 02000000030000000400000006000000
   _projectilePrefabNone: {fileID: 9014712759660979314, guid: 72e3732d625973a4d8c68c7a5454eea9, type: 3}
   _projectilePrefabFire: {fileID: 3290337213689845280, guid: 479f2ddc5b0eb1a4ea5e289b653b1b24, type: 3}
   _projectilePrefabWater: {fileID: 1993747402511560860, guid: be3b4991bd093b548a6ff2d6d91ec0dc, type: 3}

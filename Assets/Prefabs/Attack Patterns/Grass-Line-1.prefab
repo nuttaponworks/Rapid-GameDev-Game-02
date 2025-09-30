@@ -160,13 +160,14 @@ MonoBehaviour:
   parentObject: {fileID: 4716836510281327602}
   anim: {fileID: 8169796915601709717}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &94250390958861417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -431,13 +432,14 @@ MonoBehaviour:
   parentObject: {fileID: 3694683490498550725}
   anim: {fileID: 900478074990335337}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &7654360234849626343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -557,13 +559,14 @@ MonoBehaviour:
   parentObject: {fileID: 2513020260655879410}
   anim: {fileID: 4805462070485401480}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &8341921609763265806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1247,13 +1250,14 @@ MonoBehaviour:
   parentObject: {fileID: 5064273408306473177}
   anim: {fileID: 8969517533392756399}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &6641995293532442763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1524,13 +1528,14 @@ MonoBehaviour:
   parentObject: {fileID: 6916374088215154667}
   anim: {fileID: 2189962906655644696}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &8665067991233269601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1650,13 +1655,14 @@ MonoBehaviour:
   parentObject: {fileID: 5986360349001103305}
   anim: {fileID: 303245009944400871}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &8654904702071552887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2047,13 +2053,14 @@ MonoBehaviour:
   parentObject: {fileID: 8053766440138121679}
   anim: {fileID: 1576138291094110990}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &5770179018753729537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2673,13 +2680,14 @@ MonoBehaviour:
   parentObject: {fileID: 2189912996139733588}
   anim: {fileID: 94226045038920242}
   attackParticle: {fileID: 2604829235339288321, guid: 5329def4063075b4e9b27f57ca4f4d00, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 0
   speedMultiplier: 0.1
   damageHit: 1
   attackFx: 28
   isRepeatingDamage: 1
   repeatingDamageInterval: 0.2
-  repeatingDamageDuration: 3
+  repeatingDamageDuration: 8
 --- !u!61 &300478618524168723
 BoxCollider2D:
   m_ObjectHideFlags: 0

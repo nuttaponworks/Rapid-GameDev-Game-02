@@ -73,9 +73,11 @@ MonoBehaviour:
   parentObject: {fileID: 6545057595534414475}
   anim: {fileID: 9067875830624237561}
   attackParticle: {fileID: 8378648546881499446, guid: 867c572a5be680d42a042d2349f10143, type: 3}
+  particleSpawnInParent: 0
   particleDamageDelay: 1
-  speedMultiplier: 1
+  speedMultiplier: 2
   damageHit: 1
+  attackFx: 28
   isRepeatingDamage: 0
   repeatingDamageInterval: 0.5
   repeatingDamageDuration: 2

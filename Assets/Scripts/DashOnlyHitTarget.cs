@@ -139,7 +139,7 @@ namespace TarodevController
 
             // หัก HP
             int dmg = 1;
-            if (GameStateManager.Instance.bossController.currentElement == myElement) dmg+=1;
+            if (GameStateManager.Instance.bossController.currentElement == myElement) dmg+=2;
             _hitPoints = Mathf.Max(0, _hitPoints - dmg);
             
             if (healthSlider != null) healthSlider.value = _hitPoints;

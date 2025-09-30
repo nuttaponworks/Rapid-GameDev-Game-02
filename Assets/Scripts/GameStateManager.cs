@@ -73,6 +73,8 @@ public class GameStateManager : MonoBehaviour
             
             bossStatPanel.SetActive(true);
             playerStatPanel.SetActive(true);
+
+            //bossController.InitElementCycleAtStart();
         }
         
         if (newState == GameState.End)

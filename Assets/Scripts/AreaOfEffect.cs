@@ -9,6 +9,8 @@ public class AreaOfEffect : MonoBehaviour
 
     [Header("Attack settings")]
     [SerializeField] private GameObject attackParticle;
+
+    [SerializeField] private bool particleSpawnInParent = false; 
     [SerializeField] private float particleDamageDelay = 0.1f;
 
     [SerializeField] private float speedMultiplier = 1f;
@@ -49,7 +51,10 @@ public class AreaOfEffect : MonoBehaviour
         StartCoroutine(PlaySFXDelay());
         // VFX
         if (attackParticle != null)
-            Instantiate(attackParticle, transform.position, parentObject != null ? parentObject.transform.rotation : Quaternion.identity);
+        {
+            if(particleSpawnInParent) Instantiate(attackParticle, transform);
+            else Instantiate(attackParticle, transform.position, parentObject != null ? parentObject.transform.rotation : Quaternion.identity);
+        }
 
         if (isRepeatingDamage)
         {

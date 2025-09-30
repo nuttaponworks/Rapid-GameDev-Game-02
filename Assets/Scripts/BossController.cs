@@ -215,7 +215,7 @@ public class BossController : MonoBehaviour
         }
         _activeElementStates.Clear();
     }
-    private void InitElementCycleAtStart()
+    public void InitElementCycleAtStart()
     {
         // reset pool
         _remainingElements.Clear();

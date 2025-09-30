@@ -262,6 +262,6 @@ MonoBehaviour:
   currentHitObject: {fileID: 0}
   spawnParticle: {fileID: 607914935907159708, guid: 22b9fc8929c1f1e43b844b37ab4cb21b, type: 3}
   yOffset: 1.2
-  minSpawnTime: 5
-  maxSpawnTime: 20
+  minSpawnTime: 3
+  maxSpawnTime: 15
   currentSpawnTime: 0
