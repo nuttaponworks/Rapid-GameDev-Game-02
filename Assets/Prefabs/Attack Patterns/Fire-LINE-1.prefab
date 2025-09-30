@@ -163,6 +163,7 @@ MonoBehaviour:
   particleDamageDelay: 0
   speedMultiplier: 0.8
   damageHit: 1
+  attackFx: 14
   isRepeatingDamage: 0
   repeatingDamageInterval: 0.5
   repeatingDamageDuration: 2

@@ -108,6 +108,12 @@ namespace TarodevController
             TryHandleHit(collision.rigidbody ? collision.rigidbody.gameObject : collision.gameObject);
         }
 
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            if (_useTrigger) return;
+            TryHandleHit(collision.rigidbody ? collision.rigidbody.gameObject : collision.gameObject);
+        }
+
         private void TryHandleHit(GameObject otherGO)
         {
             if (otherGO == null) return;
@@ -132,7 +138,7 @@ namespace TarodevController
             SpawnHitParticleTowardsPlayer(player.transform.position);
 
             // หัก HP
-            int dmg = _hitPoints;
+            int dmg = 1;
             if (GameStateManager.Instance.bossController.currentElement == myElement) dmg+=1;
             _hitPoints = Mathf.Max(0, _hitPoints - dmg);
             

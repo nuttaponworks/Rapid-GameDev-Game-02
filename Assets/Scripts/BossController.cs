@@ -274,6 +274,7 @@ public class BossController : MonoBehaviour
 
         foreach (var fp in firePoints)
         {
+            AudioManager.instance.PlaySFX(15);
             GameObject bullet = Instantiate(bossBulletPrefab, fp.position, Quaternion.identity);
             BossBullet bp = bullet.GetComponent<BossBullet>();
             if (bp != null)
@@ -380,7 +381,7 @@ public class BossController : MonoBehaviour
         if (pct <= phase3Threshold) currentPhase = 3;
         else if (pct <= phase2Threshold) currentPhase = 2;
 
-        AudioManager.instance.PlaySFX(4);
+        AudioManager.instance.PlaySFX(UnityEngine.Random.Range(27,32));
         if (currentHP > 0) return;
 
         // HP หมด
@@ -426,15 +427,11 @@ public class BossController : MonoBehaviour
 
     void TakeElementalDamage(Collider2D other, BossElementType targetElement)
     {
-        if (currentElement == targetElement)
-        {
-            TakeDamage(GameStateManager.Instance.playerDamage);
-            if (homingHitParticlePrefab != null)
-                Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
-        }
-        else
-        {
-            TakeDamage((float)GameStateManager.Instance.playerDamage/2);
-        }
+        if (homingHitParticlePrefab != null)
+            Instantiate(homingHitParticlePrefab, other.transform.position, Quaternion.identity);
+
+        int dmg = GameStateManager.Instance.playerDamage;
+        if (currentElement != targetElement) dmg /= 2;
+        TakeDamage(dmg);
     }
 }

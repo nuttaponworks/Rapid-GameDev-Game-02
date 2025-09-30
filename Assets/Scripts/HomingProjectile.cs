@@ -46,7 +46,7 @@ public class HomingProjectile : MonoBehaviour
         StartCoroutine(HomingRoutine());
         
         
-        AudioManager.instance.PlaySFX(14);
+        AudioManager.instance.PlaySFX(15);
     }
 
     private void Awake()

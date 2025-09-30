@@ -19,7 +19,6 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject warmUpPanel;
     [SerializeField] GameObject hurtPanel;
-    [SerializeField] GameObject bossNotiPanel;
     [SerializeField] GameObject bossStatPanel;
     [SerializeField] GameObject playerStatPanel;
     private Coroutine hurtCoroutine;
@@ -47,7 +46,6 @@ public class GameStateManager : MonoBehaviour
         
         
         warmUpPanel.SetActive(true);
-        bossNotiPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         gameWinPanel.SetActive(false);
         bossStatPanel.SetActive(false);
@@ -75,7 +73,6 @@ public class GameStateManager : MonoBehaviour
             
             bossStatPanel.SetActive(true);
             playerStatPanel.SetActive(true);
-            bossNotiPanel.SetActive(true);
         }
         
         if (newState == GameState.End)
@@ -88,7 +85,6 @@ public class GameStateManager : MonoBehaviour
             {
                 gameWinPanel.SetActive(true);
             }
-            bossNotiPanel.SetActive(false);
             bossStatPanel.SetActive(false);
             playerStatPanel.SetActive(false);
             Time.timeScale = 0f;
@@ -126,5 +122,10 @@ public class GameStateManager : MonoBehaviour
         hurtPanel.SetActive(true);
         yield return new WaitForSeconds(2f);
         hurtPanel.SetActive(false);
+    }
+
+    public void OpenVolumeUI()
+    {
+        AudioManager.instance.OpenVolumeUI();
     }
 }

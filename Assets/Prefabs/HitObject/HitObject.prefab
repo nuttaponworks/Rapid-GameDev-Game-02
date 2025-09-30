@@ -544,7 +544,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &8853415039053154249
 MonoBehaviour:
@@ -558,7 +558,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4b6260cc79b8c44b8a05c35ca0e989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 9014712759660979314, guid: 72e3732d625973a4d8c68c7a5454eea9, type: 3}
+  myElement: 0
+  mySprite: {fileID: 0}
+  light2D: {fileID: 0}
+  stageSprite: []
+  hitPerSprite: 
+  _projectilePrefabNone: {fileID: 0}
+  _projectilePrefabFire: {fileID: 0}
+  _projectilePrefabWater: {fileID: 0}
+  _projectilePrefabGrass: {fileID: 0}
   _projectileCount: 3
   _projectileSpreadDeg: 10
   _projInitialSpeed: 10
